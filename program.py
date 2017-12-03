@@ -9,14 +9,25 @@ from time import sleep
 load_weather()
 set_green(True)
 
-force_rain(True)
+#force_rain(True)
 
 while True:
-    if is_motion() and is_rain ():
+    if is_motion():
         set_red(True)
         set_green(False)
-        play_rain()
-        sleep(10)
+        if is_snow():
+            play_snow()
+        else:
+            if is_rain():
+                play_rain()
+            else:
+                if is_cloudy():
+                    play_cloudy()
+                else:
+                    if is_sunny():
+                        play_sunny()
+        play_good_day()
+        sleep(5)
         set_green(True)
         set_red(False)
     sleep(1)       
